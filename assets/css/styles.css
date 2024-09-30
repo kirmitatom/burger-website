@@ -340,9 +340,10 @@ img {
 .recipe__card:nth-child(even) .recipe__box{
   order: 1;
 }
-
-
 /*=============== POPULAR ===============*/
+.popular {
+  background-color: var(--body-color-alt);
+}
 
 
 /*=============== DELIVERY ===============*/
