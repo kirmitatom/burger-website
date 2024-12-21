@@ -9,7 +9,6 @@ if(navToggle){
         navMenu.classList.add('show-menu')
     })
 }
-
 /* Menu hidden */
 if(navClose){
     navClose.addEventListener('click', () =>{
@@ -38,8 +37,45 @@ const shadowHeader = () =>{
 window.addEventListener('scroll', shadowHeader)
 /*=============== SHOW SCROLL UP ===============*/ 
 
-
+const scrollup = () => {
+    const scrollup = document.getElementById("scroll-up")
+    this.scrollY >= 350 ? scrollup.classList.add('show-scroll')
+                        : scrollup.classList.remove('show-scroll')
+}
+window.addEventListener('scroll',scrollup)
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
+const sections = document.querySelectorAll('section[id]')
 
+const scrollActive = () => {
+    const scrollDown = window.scrollY
 
+    sections.forEach(current => {
+        const sectionHeight = current.offsetHeight,
+        sectionTop = current.offsetTop - 58,
+        sectionId = current.getAttribute('id'),
+        sectionClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']')
+
+        if(scrollDown > sectionTop && scrollDown <= sectionTop + sectionHeight) {
+            sectionClass.classList.add('active-link')
+        }else {
+            sectionClass.classList.remove('active-link')
+        }
+    })
+}
+window.addEventListener('scroll',scrollActive)
 /*=============== SCROLL REVEAL ANIMATION ===============*/
+
+const sr = ScrollReveal ({
+    origin:'top',
+    distance:'60px',
+    duration: 1200,
+    delay: 300,
+})
+
+sr.reveal('.home__data, .footer')
+sr.reveal('.home__dish',{delay: 500, distance: '100px',origin: 'bottom'})
+sr.reveal('.home__burger',{delay: 1200, distance: '100px',duration:150})
+sr.reveal('.home__ingredient',{delay: 1600, interval:100})
+sr.reveal('.recipe__img, .delivery__img, .contact__image',{origin:'left'})
+sr.reveal('.recipe__data, .delivery__data, .contact__data',{origin:'right'})
+sr.reveal('.popular__card',{interval:100})
